@@ -59,11 +59,7 @@ newtype Markdown = Markdown { unMarkdown :: Text }
     deriving (Eq, Ord, Show, Read, PersistField, IsString, Monoid)
 
 instance PersistFieldSql Markdown where
-<<<<<<< HEAD
-  sqlType _ = SqlString
-=======
     sqlType _ = SqlString
->>>>>>> d08cf21ec6601f10f55cd7f7b98b09177f147479
 
 instance ToMarkup Markdown where
     -- | Sanitized by default
