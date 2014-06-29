@@ -37,8 +37,8 @@ import Data.Text (Text)
 import Data.Text.Encoding (decodeUtf8With)
 import Data.Text.Encoding.Error (lenientDecode)
 
-import Database.Persist (PersistField)
-import Database.Persist.Sql (PersistFieldSql (..), SqlType (..))
+import Database.Persist (PersistField, SqlType(SqlString))
+import Database.Persist.Sql (PersistFieldSql(..))
 import System.Directory (doesFileExist)
 
 import Text.Blaze (ToMarkup (toMarkup))
@@ -59,7 +59,11 @@ newtype Markdown = Markdown { unMarkdown :: Text }
     deriving (Eq, Ord, Show, Read, PersistField, IsString, Monoid)
 
 instance PersistFieldSql Markdown where
+<<<<<<< HEAD
   sqlType _ = SqlString
+=======
+    sqlType _ = SqlString
+>>>>>>> d08cf21ec6601f10f55cd7f7b98b09177f147479
 
 instance ToMarkup Markdown where
     -- | Sanitized by default
@@ -113,8 +117,9 @@ parseMarkdown ro = readMarkdown ro . T.unpack . unMarkdown
 -- | Defaults plus Html5, minus WrapText
 yesodDefaultWriterOptions :: WriterOptions
 yesodDefaultWriterOptions = def
-  { writerHtml5    = True
-  , writerWrapText = False
+  { writerHtml5     = True
+  , writerWrapText  = False
+  , writerHighlight = True
   }
 
 -- | Defaults plus Smart and ParseRaw
